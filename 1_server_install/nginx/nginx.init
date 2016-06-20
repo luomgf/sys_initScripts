@@ -1,0 +1,69 @@
+#!/bin/sh
+#chkconfig: 2345 80 90
+#description:auto_run
+
+#注意上面2 3行不能少
+        set  -e
+        PREFIX="/usr/local/nginx"
+        PATH=${PREFIX}/bin:$PATH
+        DESC="nginx daemon"
+        NAME="nginx"
+        DAEMON=${PREFIX}/sbin/$NAME
+        SCRIPTNAME=/etc/init.d/$NAME
+        NGCNF="/etc/nginx/nginx.conf"
+
+        test -x $DAEMON || exit 0
+
+        d_start() {
+
+                $DAEMON  -c ${NGCNF} || echo -n " already running"
+        }
+
+        d_stop() {
+                $DAEMON -s quit || echo -n " not running"
+
+        }
+
+        d_reload() {
+
+                $DAEMON -s reload || echo -n " could not reload"
+        }
+
+        d_status() {
+
+                ps  -ef|grep $DAEMON|grep  -v grep ||
+                echo "nginx don't running..."
+        }
+        case "$1" in 
+        start)
+                echo  -n "starting $DESC :$NAME"
+                d_start
+                echo  "."
+        ;;
+        stop)
+                echo -n "stopping $DESC :$NAME"
+                d_stop
+                echo "."
+        ;;
+        reload)
+                echo  -n "reloading $DESC :$NAME configuration...."
+                d_reload
+                echo "reloaded."
+        ;;
+        restart)
+                echo  -n "restart $DESC :$NAME "
+                d_stop
+                sleep 2
+                d_start
+                echo "."
+        ;;
+        status)
+                d_status
+        ;;
+        *)
+                echo "USAGE:"
+                echo "$SCRIPTNAME {start|stop|restart|reload}"  >&2
+                exit 3
+        ;;
+        esac
+        exit 0
