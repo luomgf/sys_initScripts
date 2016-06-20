@@ -31,9 +31,8 @@ install_server(){
 	cp ~/sys_scripts/1_server_install/nginx/nginx.init   /etc/init.d/nginx
 	chmod +x  /etc/init.d/nginx
 	mkdir  -p  /etc/nginx/conf.d
-	grep  -q  'include.*conf.d/\*.conf' /etc/nginx/nginx.conf || 
-	sed -i '$a include conf.d/*.conf;'  /etc/nginx/nginx.conf 
 	
+	\cp   -r   ~/sys_scripts/1_server_install/nginx/conf/*	 /etc/nginx/
 	
 }
 	mkdir  -p ~/pkg/tmp

@@ -57,16 +57,16 @@ echo
 cat >  /etc/yum.repos.d/http-yum.repo << 'EOF'
 [http-yum]
 name=http-yum
-baseurl=http://192.168.20.210/CentOS-7-x86_64-DVD-1511
+baseurl=http://192.168.0.7:5555/CentOS-7-x86_64-DVD-1511
 enable=1
 gpgcheck=1
-gpgkey=http://192.168.20.210/CentOS-7-x86_64-DVD-1511/RPM-GPG-KEY-CentOS-7
+gpgkey=http://192.168.0.7:5555/CentOS-7-x86_64-DVD-1511/RPM-GPG-KEY-CentOS-7
 EOF
 #nginx conf
 
 cat > /etc/nginx/conf.d/yum.repo.conf << 'EOF'
 server {
-        listen  80;
+        listen  5555;
         server_name localhost;
         root /var/ftp/pub/;
         # 开启Nginx的目录文件列表
