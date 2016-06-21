@@ -5,10 +5,10 @@ PKGNAME="php-$VER.tar.gz"
 PKGDIR=${PKGNAME%.tar.gz}
 PREFIX="/opt/php/$PKGDIR"
 SRCDIR=~/sys_scripts/1_server_install
-
+PKGHOME=~/pkg/tmp/$PKGDIR
 
 install-yum(){
-	yum install  -y  libxml2  libxml2-devel
+	yum install  -y  libxml2  libxml2-devel m4 autoconf
 }
 
 install-php(){
@@ -43,15 +43,26 @@ install-php(){
 
 }
 module_install(){
-    /usr/local/php/bin/phpize
-./configure --with-php-config=/usr/local/php/bin/php-config  --with-mysql=/usr/local/mysql/mysql-5.6.26/
-extension=mysql.so
+    #/usr/local/php/bin/phpize
+#./configure --with-php-config=/usr/local/php/bin/php-config  --with-mysql=/usr/local/mysql/
+#extension=mysql.so
+
+	cd $PKGHOME/ext
+	for module in $(ls -F |grep "/$")
+	do	
+		cd $PKGHOME/ext/$module || exit
+		/usr/local/php/bin/phpize
+		./configure --with-php-config=/usr/local/php/bin/php-config
+		make  && make install 
+		echo module: $module  install success
+	done
 }
 install-php-fpm(){
 echo ""
 }
 	mkdir  -p ~/pkg/tmp
 	cd ~/pkg
-	install-yum	
-	install-php
-
+#	install-yum	
+#	install-php
+	module_install
+	
