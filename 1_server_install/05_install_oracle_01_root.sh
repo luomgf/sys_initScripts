@@ -121,6 +121,7 @@ check_rspfile(){
 		-e 's!oracle.install.db.config.starterdb.SID=$!oracle.install.db.config.starterdb.SID=3mao!'  \
 		-e 's!oracle.install.db.config.starterdb.characterSet=$!oracle.install.db.config.starterdb.characterSet=AL32UTF8!' \
 		-e 's!oracle.install.db.config.starterdb.password.ALL=$!oracle.install.db.config.starterdb.password.ALL=oracle!'  \
+		-e 's!DECLINE_SECURITY_UPDATES=$!DECLINE_SECURITY_UPDATES=true!' \
 	./response/3mao.rsp	
 
 }
