@@ -42,7 +42,7 @@ pdksh*    \
 elfutils-libelf* \
 compat-libstdc++*  
 
-
+yum install http://mirror.centos.org/centos/5/os/x86_64/CentOS/pdksh-5.2.14-37.el5_8.1.x86_64.rpm -y
 
 }
 

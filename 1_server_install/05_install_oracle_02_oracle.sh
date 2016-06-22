@@ -7,7 +7,7 @@
 silent_install(){
 	echo
 	cd $PKGHOME
-	$PKGHOME/runInstaller  -silent -responseFile  $PKGHOME/response/3mao.rsp 
+	$PKGHOME/runInstaller  -silent  -ignorePrereq -responseFile  $PKGHOME/response/3mao.rsp 
 	
 	
 }
