@@ -4,6 +4,17 @@
 #http://docs.oracle.com/cd/E11882_01/install.112/e24326/toc.htm#CEGIHDBF
 check_env(){
 echo
+SWAPSIZE=$(free swap|awk  'NR==3{print $2}' )
+
+if [ $SWAPSIZE -lt 4000000 ] ; then 
+	 dd if=/dev/zero of=/swap bs=1024 count=2048000
+	mkswap  /swap
+	swapon  /swap
+	#/swap swap swap defaults 0 0 #add /etc/fstab
+	echo "swap add swapfile success"
+else
+	echo "swap already success"
+fi
 }
 
 check_yum(){
@@ -19,7 +30,6 @@ ksh \
 libaio-*  \
 libaio-*  \
 libaio-devel-*  \
-libaio-devel-* \
 libgcc-* \
 libstdc++* \
 libXi-* \
@@ -27,8 +37,10 @@ libXtst*  \
 libXtst-* \
 make-* \
 unixODBC* \
-sysstat-*
-
+sysstat-* \
+pdksh*    \
+elfutils-libelf* \
+compat-libstdc++*  
 
 
 
@@ -50,7 +62,7 @@ echo oracleoracle| passwd --stdin oracle
 
 }
 check_limit(){
-grep  	'#oracle_conf'  /etc/sysctl.conf 
+grep  	'#oracle_conf'  /etc/sysctl.conf  ||
 cat >>/etc/sysctl.conf <<'EOF'
 #oracle_conf
 fs.aio-max-nr = 1048576
