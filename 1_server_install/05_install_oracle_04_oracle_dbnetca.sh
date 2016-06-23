@@ -11,14 +11,12 @@ check_db(){
 
 	cp $PKGHOME/response/dbca.rsp  $PKGHOME/response/3maodb.rsp
 
-	#$ORACLE_HOME/bin/dbca  -silent \
-	 #     -cloneTemplate \
-         #     -gdbName  3maodb 
-         #     -sid 3maodb  \
-         #     -datafileDestination /u01/oradata \
-         #     -responseFile $PKGHOME/response/3maodb.rsp \
-	 #     -characterSet     AL32UTF8
+	#sed -i 	-e 's!GDBNAME = .*!GDBNAME = '$ORACLE_SID'!'  \
+	#	-e 's!SID = .*!SID = '$ORACLE_SID'!'    $PKGHOME/response/3maodb.rsp 
 	$ORACLE_HOME/bin/dbca  -silent  -responseFile $PKGHOME/response/3maodb.rsp 
 }
 
+del_db(){
+	 $ORACLE_HOME/bin/dbca  -silent   -deleteDatabase   -sourceDB orcl
+}
 	 check_db

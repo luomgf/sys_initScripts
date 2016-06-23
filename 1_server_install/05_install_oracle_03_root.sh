@@ -10,7 +10,7 @@ cat  >>  /etc/profile  <<'EOF'
 	export  TNS_ADMIN=/u01/app/oracle/
         export  NLS_LANG=american_america.zhs16gbk
 		ORACLE_BASE=/u01/app/oracle
-		ORACLE_SID=3mao
+		ORACLE_SID=orcl11g
 	export ORACLE_BASE ORACLE_SID
 	export PATH=$ORACLE_HOME/bin:$PATH
 EOF
