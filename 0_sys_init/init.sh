@@ -4,6 +4,7 @@ init_iptables(){
 	iptables -L
 	iptables -F
 	service iptables save
+	systemctl disable firewalld
 }
 
 init_selinux(){
