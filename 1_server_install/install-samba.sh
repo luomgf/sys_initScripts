@@ -38,6 +38,8 @@ cd $PJPWD
 install_byyum(){
 	yum install samba* samba-common-* samba-client*  -y
 	smbpasswd  -a code
+	\cp  ./samba/smb.conf  /etc/samba/smb.conf
+	chmod 755  /home/code  -R 
 }
 
 	install_byyum
