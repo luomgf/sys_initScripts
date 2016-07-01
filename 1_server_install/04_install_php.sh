@@ -8,7 +8,8 @@ SRCDIR=~/sys_scripts/1_server_install
 PKGHOME=~/pkg/tmp/$PKGDIR
 
 install-yum(){
-	yum install  -y  libxml2  libxml2-devel m4 autoconf
+	yum install  -y  libxml2  libxml2-devel m4 autoconf  \
+	libcurl-devel
 }
 
 install-php(){
@@ -26,9 +27,11 @@ install-php(){
     mkdir  -p $PREFIX 
 
     cd  php-$VER  || exit 127
+   ./configure clean
    ./configure  --prefix=$PREFIX \
+       --with-apxs2=/usr/local/httpd/bin/apxs \
        --enable-fpm
-
+   make clean
     make  &&  make install
    [ -L /usr/local/php ] && rm  -rf  /usr/local/php
    [ -L /etc/php ] &&  rm  -rf  /etc/php
@@ -62,7 +65,7 @@ echo ""
 }
 	mkdir  -p ~/pkg/tmp
 	cd ~/pkg
-#	install-yum	
-#	install-php
-	module_install
+	install-yum	
+	install-php
+#	module_install
 	
