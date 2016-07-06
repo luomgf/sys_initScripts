@@ -1,8 +1,8 @@
 #!/bin/sh
 
-VER="2.4.20"
+VER="2.4.23"
 SOFTNAME="httpd"
-PKGNAME="httpd-2.4.20.tar.gz"
+PKGNAME="httpd-${VER}.tar.gz"
 PKGDIR=${PKGNAME%.tar.gz}
 PREFIX="/opt/$SOFTNAME/$PKGDIR"
 SRCDIR=~/sys_scripts/1_server_install
