@@ -48,6 +48,9 @@ install-php(){
 module_install(){
     #/usr/local/php/bin/phpize
 #./configure --with-php-config=/usr/local/php/bin/php-config  --with-mysql=/usr/local/mysql/
+# --with-curl=/usr/include/curl
+#--with-pdo-pgsql=/usr/local/pgsql/bin
+#--with-pgsql=/usr/local/pgsql/bin
 #extension=mysql.so
 
 	cd $PKGHOME/ext
