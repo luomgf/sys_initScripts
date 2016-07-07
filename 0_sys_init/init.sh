@@ -26,6 +26,16 @@ init_ldconf(){
 	done
 	ldconfig  -v
 }
+
+init_timesync(){
+	yum install  -y ntp
+	ntpdate  time.nist.gov 
+	crontab  -l |grep ntpdate && exit
+        echo '*/10 * * * * ntpdate time.nist.gov ' >  /root/crontab.tmp
+	crontab  /root/crontab.tmp
+	rm -rf /root/crontab.tmp
+
+}
 	init_iptables
 	init_selinux
 	init_ldconf
