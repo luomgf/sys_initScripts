@@ -4,11 +4,12 @@ init_iptables(){
 	iptables -L
 	iptables -F
 	service iptables save
-	systemctl disable firewalld
+	systemctl disable firewalld.service 
 }
 
 init_selinux(){
 	sed -i  's/SELINUX=enforcing/SELINUX=disable/' /etc/sysconfig/selinux
+	 sed -i  's/SELINUX=enforcing/SELINUX=disable/'  /etc/selinux/config
 	getenforce
 	setenforce  0	
 	getenforce
