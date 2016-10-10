@@ -106,12 +106,7 @@ check_dirs(){
 }
 
 check_uppkg(){
-	cd  /home/oracle/pkg/oracle
-	[ -d database ]  || {
-	unzip  $PKGNAME1
-	unzip  $PKGNAME2
-	}
-	cd  database
+	cd  $PKGHOME
 }
 check_rspfile(){
 	echo

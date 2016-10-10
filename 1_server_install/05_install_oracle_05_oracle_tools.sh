@@ -7,7 +7,7 @@ make_start(){
 cat > /home/oracle/ostart.sh <<EOF
 $ORACLE_HOME/bin/lsnrctl  start   LISTENER 
 sqlplus / as sysdba <<SQL
-starup
+startup mount
 SQL
 EOF
 
@@ -17,7 +17,7 @@ make_stop(){
 	cat > /home/oracle/ostop.sh <<EOF
 $ORACLE_HOME/bin/lsnrctl  stop   LISTENER  
 sqlplus / as sysdba <<SQL
-shutdown immeidate  ;
+shutdown immediate;
 SQL
 EOF
 }
