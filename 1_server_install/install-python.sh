@@ -5,7 +5,7 @@ PKGNAME="Python-$VER.tgz"
 PKGDIR=${PKGNAME%.tgz}
 PREFIX="/opt/python/$PKGDIR"
 SRCDIR=~/sys_scripts/1_server_install
-PKGHOME=~/pkg/tmp/$PKGDIR
+PKGHOME="~/pkg/tmp/$PKGDIR"
 
 install_init(){
 	mkdir  -p  $PKGHOME
@@ -25,7 +25,7 @@ PYVER=${1-"3.4.4"}
 	cp $PKGNAME  ~/pkg/tmp/
 	cd ~/pkg/tmp/
 	[ -d $PKGHOME ] || tar  -zxf  $PKGNAME
- 	cd $PKGHOME
+ 	cd  $PKGDIR
 	./configure   --prefix=$PREFIX  \
 		--enable-shared        \
  		--enable-loadable-sqlite-extensions  \
@@ -33,7 +33,7 @@ PYVER=${1-"3.4.4"}
 	make  && make install
 	rm  -rf /usr/bin/python
 	ln  -s $PREFIX/bin/python${PPYVER}   /usr/bin/python 
-	sed    -i   's~#!/usr/bin/python~#!/usr/bin/python2.7~'        /usr/bin/yum
+	sed    -i   's~#!/usr/bin/python$~#!/usr/bin/python2.7~'        /usr/bin/yum
 	grep -q  "$PREFIX/bin/"  /etc/profile      || 
 	sed  -i   '$a PATH='$PREFIX'/bin/:$PATH ; export  PATH ' /etc/profile 
 	[ -L /usr/local/python ] && rm  -rf  /usr/local/python
