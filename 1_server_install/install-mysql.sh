@@ -43,3 +43,8 @@ uinstall_mysql(){
 	cd ~/pkg
 	uinstall_mysql
 	install_mysql
+
+#/usr/local/mysql/bin/mysql  -uroot  -hlocalhost
+#use  mysql
+#GRANT ALL PRIVILEGES ON *.* to root@'111.85.174.128' IDENTIFIED BY 'rootroot'   ;
+# FLUSH PRIVILEGES;;
