@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VER="2.4.23"
+VER=${1-"2.4.23"}
 SOFTNAME="httpd"
 PKGNAME="httpd-${VER}.tar.gz"
 PKGDIR=${PKGNAME%.tar.gz}
