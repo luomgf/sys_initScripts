@@ -27,23 +27,27 @@ install-php(){
     mkdir  -p $PREFIX 
 
     cd  php-$VER  || exit 127
-   ./configure clean
+   #./configure clean
    ./configure  --prefix=$PREFIX \
        --with-apxs2=/usr/local/httpd/bin/apxs \
-       --enable-fpm
-   make clean
+       --enable-fpm  \
+      --disable-fileinfo       # mem < 1g
+  # make clean
     make  &&  make install
    [ -L /usr/local/php ] && rm  -rf  /usr/local/php
    [ -L /etc/php ] &&  rm  -rf  /etc/php
    ln  -s  $PREFIX  /usr/local/php
-   ln  -s  $PREFIX/etc /etc/php
+
     cp $SRCDIR/php/init.d/php-fpm   /etc/rc.d/init.d/php-fpm
     chmod 755  /etc/rc.d/init.d/php-fpm
     chkconfig  --add php-fpm
-   \cp -r $SRCDIR/php/php.ini       /etc/php/
-   \cp -r $SRCDIR/php/php-fpm.conf  /etc/php/ 
+   cp  $SRCDIR/php/php.ini       $PREFIX/lib/
+   cp  $SRCDIR/php/php-fpm.conf  $PREFIX/etc/
     grep $PREFIX /etc/profile >/dev/null ||  sed  -i '$a export  PATH='$PREFIX'/bin:$PATH' /etc/profile
 
+   [ -d  /etc/php ] ||  mkdir  -p  /etc/php
+   ln  -s  $PREFIX/etc/php-fpm.conf /etc/php/php-fpm.conf
+   ln  -s  $PREFIX/lib/php.ini /etc/php/php.ini
 }
 module_install(){
     #/usr/local/php/bin/phpize
