@@ -19,7 +19,7 @@ check_upack(){
 }
 
 check_yum(){
-	yum install  -y apr-*
+	yum install  -y apr-*  lynx
 }
 check_build(){
 	cd $PKGHOME
