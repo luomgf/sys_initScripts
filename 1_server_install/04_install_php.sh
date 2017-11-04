@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VER="5.6.20"
+VER=${1-"5.6.20"}
 PKGNAME="php-$VER.tar.gz"
 PKGDIR=${PKGNAME%.tar.gz}
 PREFIX="/opt/php/$PKGDIR"
