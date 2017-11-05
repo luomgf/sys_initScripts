@@ -9,7 +9,7 @@
 
 install_mysql(){
 
-        yum install libaio* -y
+        yum install libaio*  perl perl-devel autoconf  -y
 
         [ -f ${PKGNAME}".tar.gz" ] ||  wget http://aliyun-dep.oss-cn-beijing.aliyuncs.com/mysql/${PKGNAME}.tar.gz
 
