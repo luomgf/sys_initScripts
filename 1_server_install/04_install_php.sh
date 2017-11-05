@@ -9,7 +9,7 @@ PKGHOME=~/pkg/tmp/$PKGDIR
 
 install-yum(){
 	yum install  -y  libxml2  libxml2-devel m4 autoconf  \
-	libcurl-devel
+	libcurl-devel  libjpeg* libpng*  
 }
 
 install-php(){
@@ -66,6 +66,13 @@ module_install(){
 		make  && make install 
 		echo module: $module  install success
 	done
+
+        cd /usr/local/php//lib/php/extensions/no-debug-zts-*
+	for module in $(ls  *.so)
+	do	
+	       echo $module
+		grep  -q $module /usr/local/php/lib/php.ini || sed  -i   '$a extension='$module''   /usr/local/php/lib/php.ini 
+	done
 }
 install-php-fpm(){
 echo ""
@@ -73,6 +80,6 @@ echo ""
 	mkdir  -p ~/pkg/tmp
 	cd ~/pkg
 	install-yum	
-	install-php
-#	module_install
+	#install-php
+	module_install
 	
