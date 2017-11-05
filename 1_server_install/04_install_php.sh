@@ -56,7 +56,7 @@ module_install(){
 #--with-pdo-pgsql=/usr/local/pgsql/bin
 #--with-pgsql=/usr/local/pgsql/bin
 #extension=mysql.so
-
+#--with-freetype-dir=/usr/ --enable-gd-native-ttf   # gd module add option
 	cd $PKGHOME/ext
 	for module in $(ls -F |grep "/$")
 	do	
