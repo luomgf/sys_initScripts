@@ -4,6 +4,7 @@ init_iptables(){
 	iptables -L
 	iptables -F
 	service iptables save
+	systemctl  stop firewalld.service
 	systemctl disable firewalld.service 
 }
 
