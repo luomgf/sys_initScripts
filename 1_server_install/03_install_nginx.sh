@@ -1,6 +1,6 @@
 #!/bin/sh
 
-	PKGNAME="nginx-1.8.0.tar.gz"
+	PKGNAME="nginx-${1-1.8.0}.tar.gz"
 	PKGDIR=${PKGNAME%.tar.gz}
 	PREFIX=/opt/nginx/$PKGDIR
 
