@@ -57,6 +57,19 @@ module_install(){
 #--with-pgsql=/usr/local/pgsql/bin
 #extension=mysql.so
 #--with-freetype-dir=/usr/ --enable-gd-native-ttf   # gd module add option
+
+#gd
+#yum install -y  libwebp  libwebp-dev*  libjpeg  libjpeg-dev* libpng libpng-dev* libz libz-dev* libXpm libXpm-dev*
+#/usr/local/php/bin/phpize
+#./configure    	--with-php-config=/usr/local/php/bin/php-config    \
+#	--with-freetype-dir=/usr/                   \
+#  	--with-webp-dir=/usr/                  \
+#  	--with-jpeg-dir=/usr/                  \
+#  	--with-png-dir=/usr/                     \
+#  	--with-zlib-dir=/usr/                    \
+#  	--with-xpm-dir=/usr/                  \
+#  	--enable-gd-native-ttf     
+         
 	cd $PKGHOME/ext
 	for module in $(ls -F |grep "/$")
 	do	
