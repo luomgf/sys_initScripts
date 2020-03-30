@@ -1,0 +1,5 @@
+#!/bin/sh
+
+
+	vi /etc/sysconfig/network
+	HOSTNAME=controller0

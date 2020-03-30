@@ -1,0 +1,8 @@
+vi /etc/hosts
+
+127.0.0.1    localhost
+::1          localhost 
+10.20.0.10   controller0 
+10.20.0.20   network0
+10.20.0.30   compute0
+
