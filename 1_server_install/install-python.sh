@@ -34,7 +34,18 @@ PYVER=${1-"3.4.4"}
         }
 
 
-change_ini(){
+OnlyPython_ini(){
+#单独安装python模式，特殊设置
+	grep  $PREFIX/bin  /etc/profile  || sed  -i   '$a export PATH='$PREFIX'/bin/:$PATH  '   /etc/profile  
+	grep  $PREFIX/lib  /etc/profile  ||  sed  -i   '$a export LD_LIBRARY_PATH='$PREFIX'/lib:$LD_LIBRARY_PATH'    /etc/profile
+
+	python3 -V
+
+}
+
+
+sys_ini(){
+#采用统一范式安装，在/usr/local目录安装或者建立软链接，系统统一加载
 rm  -rf /usr/bin/python
         ln  -s $PREFIX/bin/python${PPYVER}   /usr/bin/python 
         sed    -i   's~#!/usr/bin/python$~#!/usr/bin/python2.7~'        /usr/bin/yum
@@ -47,4 +58,5 @@ rm  -rf /usr/bin/python
 
 install_yum
 install_python  $VER
-#change_ini
+#sys_ini
+OnlyPython_ini 
