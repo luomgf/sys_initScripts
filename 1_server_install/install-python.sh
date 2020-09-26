@@ -12,7 +12,7 @@ install_init(){
         cd ~/pkg
 }
 install_yum(){
-        yum install -y  openssl*    sqlite* 
+        yum install -y  openssl*    sqlite*  libffi-devel 
 }
 
 install_python(){
