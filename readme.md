@@ -2,7 +2,7 @@
 ################# v1.0 ################################
 目录结构:
 ```
-sys_scripts
+sys_initScripts
 ├── 0_sys_init
 │   ├── basic_soft.sh
 │   └── init.sh
