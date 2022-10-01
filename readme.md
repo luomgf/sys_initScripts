@@ -1,6 +1,7 @@
 
 ################# v1.0 ################################
 目录结构:
+```
 sys_scripts
 ├── 0_sys_init
 │   ├── basic_soft.sh
@@ -70,4 +71,4 @@ sys_scripts
 └── 2_soft_install
     └── 01_install_git.sh
 
-
+```
