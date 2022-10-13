@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VER="3.7.0rc1"
+VER="3.10.1"
 PKGNAME="Python-$VER.tgz"
 PKGDIR=${PKGNAME%.tgz}
 PREFIX="/opt/python/$PKGDIR"
@@ -29,7 +29,8 @@ PYVER=${1-"3.4.4"}
         ./configure   --prefix=$PREFIX  \
                 --enable-shared        \
                 --enable-loadable-sqlite-extensions  \
-                --enable-ipv6
+                --enable-ipv6		\
+		--with-openssl=/usr/local/ssl/
         make  && make install
         }
 
